@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lab 4 - My Store</title>
+</head>
+<body>
+
+    <h1>My Store</h1>
+    <a href="index.html">Home</a>
+
+    <!-- Requirement 1: Welcome the customer with an alert when the page opens -->
+    <script>
+        alert("Welcome to my store!");
+    </script>
+
+    <!-- Requirement 2: Use prompts to ask for the customer's name, item, and quantity -->
+    <script>
+        let customerName = prompt("What is your name?");
+        let item = prompt("What item would you like to order?");
+        let quantity = Number(prompt("How many would you like? Enter 1-99."));
+
+        // Only accept a whole number from 1 to 99.
+        while (!Number.isInteger(quantity) || quantity < 1 || quantity > 99) {
+            quantity = Number(prompt("Please enter a whole number from 1 to 99."));
+        }
+    </script>
+
+    <!-- Requirement 3: Greet the customer appropriately for the time of day on the webpage -->
+    <h2 id="greeting"></h2>
+    <script>
+        let orderDate = new Date();
+        let hour = orderDate.getHours();
+        let greeting;
+
+        if (hour < 12) {
+            greeting = "Good Morning";
+        } else if (hour < 18) {
+            greeting = "Good Afternoon";
+        } else {
+            greeting = "Good Evening";
+        }
+
+        document.getElementById("greeting").textContent =
+            greeting + " " + customerName + ", Thank you for Ordering!";
+    </script>
+
+    <!-- Requirement 4: Display all the customer's order information on the webpage -->
+    <p id="customer"></p>
+    <p id="item"></p>
+    <p id="quantity"></p>
+
+    <script>
+        document.getElementById("customer").textContent =
+            "Customer name: " + customerName;
+
+        document.getElementById("item").textContent =
+            "Item ordered: " + item;
+
+        document.getElementById("quantity").textContent =
+            "Number of items: " + quantity;
+    </script>
+
+    <!-- Requirement 5: Display an expected arrival date exactly 7 days after the order date -->
+    <p id="arrival"></p>
+
+    <script>
+        let arrivalDate = new Date(orderDate);
+        arrivalDate.setDate(arrivalDate.getDate() + 7);
+
+        document.getElementById("arrival").textContent =
+            "Expected arrival date: " + arrivalDate.toLocaleDateString("en-US");
+    </script>
+    
+   <!-- Link to the Lab 4 page -->
+   <a href="lab4.html">Lab 4</a>
+</body>
+</html>
